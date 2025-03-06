@@ -3,7 +3,7 @@ name: Deploy to Heroku
 on:
   push:
     branches:
-      - release  # Change this if you use a different branch
+      - release  # Change if using a different branch
 
 jobs:
   deploy:
@@ -12,6 +12,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Install Heroku CLI  # ✅ FIX: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Login to Heroku Container Registry
         env:
