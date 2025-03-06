@@ -26,7 +26,7 @@ public class GreetingController {
 
   @GetMapping("/greeting")
   public Greeting greeting(@RequestParam(value = "name", defaultValue = "There") String name){
-    if(name.equals("Kenobi")){
+    if(name.equalsIgnoreCase("Kenobi")){
       name = "Hello there!<br>GENENERAL KENOBI!";
     }
     return new Greeting(counter.incrementAndGet(), String.format(template,name));
