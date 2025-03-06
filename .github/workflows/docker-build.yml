@@ -1,16 +1,16 @@
-name: Build and Push Docker Image
+name: Build and Push Multi-Arch Docker Image
 
 on:
   push:
     branches:
-      - main  # Change to your branch if necessary
+      - main  # Change this if you use a different branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
@@ -22,8 +22,10 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v3
+      - name: Build and Push Multi-Arch Docker Image
+        uses: docker/build-push-action@v4
         with:
+          context: .
           push: true
+          platforms: linux/amd64,linux/arm64  # ✅ Multi-architecture support
           tags: daclink/springboot-docker-demo:latest
