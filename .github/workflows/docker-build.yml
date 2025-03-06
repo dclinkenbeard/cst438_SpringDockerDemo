@@ -26,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: your-dockerhub-username/springboot-docker-demo:latest
+          tags: daclink/springboot-docker-demo:latest
